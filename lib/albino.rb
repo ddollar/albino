@@ -1,7 +1,9 @@
-##
+require 'open4'
+
+#
 # Wrapper for the Pygments command line tool, pygmentize.
 #
-# Pygments: http://pygments.org/
+# Pygments: http://pygments.org
 #
 # Assumes pygmentize is in the path.  If not, set its location
 # with Albino.bin = '/path/to/pygmentize'
@@ -39,10 +41,9 @@
 # To see all lexers and formatters available, run `pygmentize -L`.
 #
 # Chris Wanstrath // chris@ozmm.org 
-#         GitHub // http://github.com
 #
-require 'open4'
-
+# GitHub // http://github.com
+#
 class Albino
 
   def self.rails_in_development?
