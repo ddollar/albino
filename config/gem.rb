@@ -2,7 +2,7 @@
 
 require "lib/#{@config.name}"
 
-@config.version  = Albino.version
+@config.version  = '1.0'
 @config.homepage = "http://github.com/ddollar/albino"
 @config.summary  = "Ruby wrapper for Pygments syntax-highlighting library"
 

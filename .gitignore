@@ -1,7 +1,5 @@
 doc/coverage
 doc/rdoc
-output
 pkg
 
-/*.html
-doc/*.html
+doc/*
