@@ -1,0 +1,47 @@
+= Albino
+
+== Installation
+
+    $ gem sources -a http://gems.github.com
+    $ gem install ddollar-albino
+
+== Usage
+
+To print out an HTMLized, Ruby-highlighted version of '/some/file.rb'
+
+    @syntaxer = Albino.new('/some/file.rb', :ruby)
+    puts @syntaxer.colorize
+
+To use another formatter, pass it as the third argument:
+
+    @syntaxer = Albino.new('/some/file.rb', :ruby, :bbcode)
+    puts @syntaxer.colorize
+
+You can also use the #colorize class method:
+
+    puts Albino.colorize('/some/file.rb', :ruby)
+
+Another also: you get a #to_s, for somewhat nicer use in Rails views.
+
+    ... helper file ...
+    def highlight(text)
+      Albino.new(text, :ruby)
+    end
+
+    ... view file ...
+    <%= highlight text %>
+
+The default lexer is 'text'.  You need to specify a lexer yourself;
+because we are using STDIN there is no auto-detect.
+
+To see all lexers and formatters available, run `pygmentize -L`.
+
+== Credits
+
+This project is an extraction from GitHub.
+
+For this and other extractions, see http://github.com/github
+
+The Albino code was all written by Chris Wanstrath chris@ozmm.org
+
+Wrapped in a gem by David Dollar http://daviddollar.org
