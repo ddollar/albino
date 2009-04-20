@@ -2,7 +2,7 @@
 spec = Gem::Specification.new do |s|
 
   s.name        = "albino"
-  s.version     = "1.0.3"
+  s.version     = "1.0.4"
   s.summary     = "Ruby wrapper for Pygments syntax-highlighting library"
   s.homepage    = "http://github.com/ddollar/albino"
 

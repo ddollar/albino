@@ -2,7 +2,7 @@
 
 require "lib/#{@config.name}"
 
-@config.version  = '1.0.3'
+@config.version  = '1.0.4'
 @config.homepage = "http://github.com/ddollar/albino"
 @config.summary  = "Ruby wrapper for Pygments syntax-highlighting library"
 
