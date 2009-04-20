@@ -93,13 +93,14 @@ if $0 == __FILE__
       @syntaxer = Albino.new(__FILE__, :ruby)
     end
 
-    specify "defaults to text" do
+    specify "defaults to text with no and no syntax" do
       syntaxer = Albino.new(__FILE__)
-      syntaxer.expects(:execute).with('pygmentize -f html -l text').returns(true)
+      syntaxer.expects(:execute).with('pygmentize -f html').returns(true)
       syntaxer.colorize
     end
 
     specify "accepts options" do
+      syntaxer = Albino.new(__FILE__, :ruby, :html)
       @syntaxer.expects(:execute).with('pygmentize -f html -l ruby').returns(true)
       @syntaxer.colorize
     end
