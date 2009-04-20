@@ -40,7 +40,7 @@ require 'open4'
 #
 # To see all lexers and formatters available, run `pygmentize -L`.
 #
-# Chris Wanstrath // chris@ozmm.org 
+# Chris Wanstrath // chris@ozmm.org
 #
 # GitHub // http://github.com
 #
