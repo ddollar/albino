@@ -20,7 +20,7 @@ David Dollar wrapped it in a gem.
   s.author   = "David Dollar"
   s.email    = "ddollar@gmail.com"
 
-  s.files    = ["doc/classes","doc/classes/Albino.html","doc/created.rid","doc/files","doc/files/lib","doc/files/lib/albino_rb.html","doc/files/README_rdoc.html","doc/fr_class_index.html","doc/fr_file_index.html","doc/fr_method_index.html","doc/index.html","doc/rdoc-style.css","lib/albino.rb"]
+  s.files    = ["lib/albino.rb"]
   s.platform = Gem::Platform::RUBY
 
   s.rubyforge_project = "albino"
