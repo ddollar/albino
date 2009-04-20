@@ -56,6 +56,10 @@ class Albino
     new(*args).colorize
   end
 
+  def self.lexer_from_filename(filename)
+    new('').lexer_from_filename(filename)
+  end
+
   def initialize(target, lexer = nil, format = :html)
     @target  = File.exists?(target) ? File.read(target) : target rescue target
     @options = {}
@@ -80,6 +84,10 @@ class Albino
       value   = @options[flag]
       string += " -#{flag} #{value}"
     end
+  end
+
+  def lexer_from_filename(filename)
+    execute @@bin + " -N #{filename}"
   end
 end
 
@@ -117,6 +125,15 @@ if $0 == __FILE__
 
     specify "class method colorize" do
       assert_equal @syntaxer.colorize, Albino.colorize(__FILE__, :ruby)
+    end
+
+    specify "can get lexer from filename" do
+      assert_equal "rb", @syntaxer.lexer_from_filename('test.gemspec')
+    end
+
+    specify "class method lexer_from_filename" do
+      assert_equal @syntaxer.lexer_from_filename('test.gemspec'),
+                   Albino.lexer_from_filename('test.gemspec')
     end
   end
 end
