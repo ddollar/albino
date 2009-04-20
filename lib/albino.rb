@@ -58,7 +58,9 @@ class Albino
 
   def initialize(target, lexer = nil, format = :html)
     @target  = File.exists?(target) ? File.read(target) : target rescue target
-    @options = { :l => lexer, :f => format }
+    @options = {}
+    @options[:f] = format
+    lexer ? @options[:l] = lexer : @options[:g] = ''
   end
 
   def execute(command)
@@ -75,8 +77,7 @@ class Albino
 
   def convert_options(options = {})
     @options.merge(options).keys.sort_by { |k| k.to_s }.inject('') do |string, flag|
-      value = @options[flag]
-      break(string) unless value
+      value   = @options[flag]
       string += " -#{flag} #{value}"
     end
   end
@@ -95,7 +96,7 @@ if $0 == __FILE__
 
     specify "defaults to text with no and no syntax" do
       syntaxer = Albino.new(__FILE__)
-      syntaxer.expects(:execute).with('pygmentize -f html').returns(true)
+      syntaxer.expects(:execute).with('pygmentize -f html -g ').returns(true)
       syntaxer.colorize
     end
 
