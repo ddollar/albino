@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: README.rdoc [albino]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>README.rdoc</div>
+        <div class='paths'>
+          README.rdoc
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Sun Apr 19 20:37:04 -0400 2009</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1><a href="../classes/Albino.html">Albino</a></h1>
+            <h2>Installation</h2>
+            <pre>$ gem sources -a http://gems.github.com&#x000A;$ gem install ddollar-albino</pre>
+            <h2>Usage</h2>
+            <p>
+            To print out an HTMLized, Ruby-highlighted version of
+            &#8216;/some/file.rb&#8216;
+            </p>
+            <pre>@syntaxer = Albino.new('/some/file.rb', :ruby)&#x000A;puts @syntaxer.colorize</pre>
+            <p>
+            To use another formatter, pass it as the third argument:
+            </p>
+            <pre>@syntaxer = Albino.new('/some/file.rb', :ruby, :bbcode)&#x000A;puts @syntaxer.colorize</pre>
+            <p>
+            You can also use the colorize class method:
+            </p>
+            <pre>puts Albino.colorize('/some/file.rb', :ruby)</pre>
+            <p>
+            Another also: you get a to_s, for somewhat nicer use in Rails views.
+            </p>
+            <pre>... helper file ...&#x000A;def highlight(text)&#x000A;  Albino.new(text, :ruby)&#x000A;end&#x000A;&#x000A;... view file ...&#x000A;&lt;%= highlight text %&gt;</pre>
+            <p>
+            The default lexer is &#8216;text&#8217;. You need to specify a lexer
+            yourself; because we are using STDIN there is no auto-detect.
+            </p>
+            <p>
+            To see all lexers and formatters available, run `pygmentize -L`.
+            </p>
+            <h2>Credits</h2>
+            <p>
+            This project is an extraction from GitHub.
+            </p>
+            <p>
+            For this and other extractions, see <a
+            href="http://github.com/github">github.com/github</a>
+            </p>
+            <p>
+            The <a href="../classes/Albino.html">Albino</a> code was all written by
+            Chris Wanstrath chris@ozmm.org
+            </p>
+            <p>
+            Wrapped in a gem by David Dollar <a
+            href="http://daviddollar.org">daviddollar.org</a>
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
