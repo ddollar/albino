@@ -2,7 +2,6 @@ require 'rubygems'
 require 'erb'
 require 'yaml'
 require 'rake'
-require 'FileUtils'
 
 begin
   require 'hanna/rdoctask'
