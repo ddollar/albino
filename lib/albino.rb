@@ -56,7 +56,7 @@ class Albino
     new(*args).colorize
   end
 
-  def initialize(target, lexer = :text, format = :html)
+  def initialize(target, lexer = nil, format = :html)
     @target  = File.exists?(target) ? File.read(target) : target rescue target
     @options = { :l => lexer, :f => format }
   end
@@ -74,8 +74,10 @@ class Albino
   alias_method :to_s, :colorize
 
   def convert_options(options = {})
-    @options.merge(options).inject('') do |string, (flag, value)|
-      string + " -#{flag} #{value}"
+    @options.merge(options).keys.sort_by { |k| k.to_s }.inject('') do |string, flag|
+      value = @options[flag]
+      break(string) unless value
+      string += " -#{flag} #{value}"
     end
   end
 end
