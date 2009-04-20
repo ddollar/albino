@@ -36,6 +36,10 @@ because we are using STDIN there is no auto-detect.
 
 To see all lexers and formatters available, run `pygmentize -L`.
 
+== Documentation
+
+RDoc can be found at http://ddollar.github.com/albino
+
 == Credits
 
 This project is an extraction from GitHub.
