@@ -2,11 +2,13 @@ require 'rubygems'
 require 'erb'
 require 'yaml'
 require 'rake'
-require 'rake/rdoctask'
-require 'spec/rake/spectask'
-require 'spec/rake/verify_rcov'
 require 'FileUtils'
-require 'BlueCloth'
+
+begin
+  require 'hanna/rdoctask'
+rescue LoadError
+  require 'rake/rdoctask'
+end
 
 task :default => [ 'rspec:run' ]
 
@@ -80,61 +82,21 @@ namespace :gem do
   end
 end
 
-namespace :documentation do
-
-  desc 'Compile HTML documentation from Markdown'
-  task :compile do
-    Dir['**/*.markdown'].each do |file|
-      html_file = file.gsub('.markdown', '.html')
-      html = File.open(file, 'r') { |f| BlueCloth.new(f.read).to_html }
-      File.open(html_file, 'w') { |f| f.puts html }
-    end
-  end
-
-end
-
 namespace :rdoc do
 
   desc 'Generate RDoc'
   rd = Rake::RDocTask.new(:build) do |rdoc|
     Rake::Task['gem:config'].invoke
-    Rake::Task['documentation:compile'].invoke
     rdoc.title = @config.name
-    rdoc.main  = 'README.html'
-    rdoc.rdoc_dir = 'output/rdoc'
+    rdoc.main  = 'README.rdoc'
+    rdoc.rdoc_dir = 'doc'
     rdoc.options << '--line-numbers' << '--inline-source'
-    rdoc.rdoc_files.include('README.html', 'lib/**/*.rb')
+    rdoc.rdoc_files.include('README.rdoc', 'lib/**/*.rb')
   end
 
   desc 'View RDoc'
   task :view => [ :build ] do
-    system %{open output/rdoc/index.html}
-  end
-
-end
-
-namespace :rspec do
-
-  desc "Run rspec tasks"
-  Spec::Rake::SpecTask.new(:run) do |t|
-    t.spec_files = FileList['spec/**/*_spec.rb']
-    #t.spec_opts = ['--options', 'spec/spec.opts']
-    unless ENV['NO_RCOV']
-      t.rcov = true
-      t.rcov_dir = 'output/coverage'
-      t.rcov_opts = ['--exclude', 'bin\/rtr,examples,\/var\/lib\/gems,\/Library\/Ruby,\.autotest']
-    end
-  end
-
-  desc "Show code coverage"
-  task :coverage => [ :run ] do
-    system %{open output/coverage/index.html}
-  end
-
-  desc "Verify code coverage"
-  RCov::VerifyTask.new(:verify => :run) do |t|
-    t.threshold = 100.0
-    t.index_html = 'output/coverage/index.html'
+    system %{open doc/index.html}
   end
 
 end
